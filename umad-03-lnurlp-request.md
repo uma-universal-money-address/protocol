@@ -1,11 +1,11 @@
 # UMAD-03: LNURLP Request
 
-The first request in the UMA protocol is the LNURLP request, which aligns with LNURL-PAY ([LUD-06](../LUD-06.md)), but with a few added query parameters.
+The first request in the UMA protocol is the LNURLP request, which aligns with LNURL-PAY ([LUD-06](https://github.com/lnurl/luds/blob/luds/06.md)), but with a few added query parameters.
 
-If **$alice@vasp1.com** is paying **$bob@vasp2.com**, the request looks like:
+If `$alice@vasp1.com` is paying `$bob@vasp2.com`, the request looks like:
 
 ```http
-GET vasp2.com/.well-known/lnurlp/$bob?umaVersion=1.0&nonce=1234&vaspDomain=vasp1.com&signature=abcd&isSubjectToTravelRule=true&timestamp=12345678
+GET https://vasp2.com/.well-known/lnurlp/$bob?umaVersion=1.0&nonce=1234&vaspDomain=vasp1.com&signature=abcd&isSubjectToTravelRule=true&timestamp=12345678
 ```
 
 - `umaVersion` **(string)**: is the UMA protocol version supported by VASP1. See the [versioning UMAD](/umad-08-versioning.md).
