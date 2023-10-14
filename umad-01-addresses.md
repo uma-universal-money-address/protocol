@@ -1,4 +1,4 @@
-# UMA Addresses
+# UMAD-01: UMA Addresses
 
 The UMA address format is based on Lightning Addresses ([LUD-16](https://github.com/lnurl/luds/blob/luds/16.md)), and are themselves valid LNURL Lightning Addresses. They are in the format _$\<username>@\<domainname>_ (eg. _$alice@somevasp.com_). Similar to Lightning Addresses ([LUD-16](https://github.com/lnurl/luds/blob/luds/16.md)), the domain will be used to make the first lnurlp call to somevasp.com.
 

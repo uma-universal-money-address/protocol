@@ -1,0 +1,1 @@
+# UMAD-07: Post-transaction compliance hooks
