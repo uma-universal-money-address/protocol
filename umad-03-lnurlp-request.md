@@ -1,6 +1,6 @@
 # UMAD-03: LNURLP Request
 
-The first request in the UMA protocol is the LNURLP request, which aligns with LNURL-PAY ([LUD-06](https://github.com/lnurl/luds/blob/luds/06.md)), but with a few added query parameters.
+The first request in the UMA protocol is the LNURLP request, which aligns with LNURL-PAY ([LUD-06](https://github.com/lnurl/luds/blob/luds/06.md)), but with a few added query parameters for compliance and authentication.
 
 If `$alice@vasp1.com` is paying `$bob@vasp2.com`, the request looks like:
 
