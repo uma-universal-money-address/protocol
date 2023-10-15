@@ -2,7 +2,7 @@
 
 The response to the LNURLP request is an extension of LNURL's [LUD-06](https://github.com/lnurl/luds/blob/luds/06.md). It also utilizes the payer data spec as described in [LUD-18](https://github.com/lnurl/luds/blob/luds/18.md) and a slightly modified version of the local currency spec proposed in [LUD-21](https://github.com/lnurl/luds/pull/207). The full structure of the LNURLP response is:
 
-```json
+```
 {
   "callback": string,
   // Max millisatoshi amount the receiver is willing to receive.
