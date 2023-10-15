@@ -14,3 +14,5 @@ This repo is organized as a set of individual documents describing a single mess
 | [UMAD-06](/umad-06-payreq-response.md)         | Payreq Response                      |
 | [UMAD-07](/umad-07-post-tx-hooks.md)           | Post Transaction Compliance Hooks    |
 | [UMAD-08](/umad-08-versioning.md)              | Versioning                           |
+
+![UMA Protocol Diagram](https://static.swimlanes.io/96ce03b038caee40527168793d9cf984.png)
