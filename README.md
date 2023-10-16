@@ -17,4 +17,25 @@ This repo is organized as a set of individual documents describing a single mess
 | [UMAD-07](/umad-07-post-tx-hooks.md)           | Post Transaction Compliance Hooks    |
 | [UMAD-08](/umad-08-versioning.md)              | Versioning                           |
 
+## Additional Resources
+
+- [Full Documentation and Guides](https://docs.uma.me)
+- **UMA SDKs:**
+  - [Golang](https://github.com/uma-universal-money-address/uma-go-sdk)
+  - [Python](https://github.com/uma-universal-money-address/uma-python-sdk)
+  - [Rust](https://github.com/uma-universal-money-address/uma-rust-sdk)
+  - [Typescript](https://github.com/uma-universal-money-address/uma-js-sdk)
+  - [Kotlin/Java](https://github.com/uma-universal-money-address/uma-kotlin-sdk)
+  - [Shared Crypto Lib](https://github.com/uma-universal-money-address/uma-crypto-uniffi)
+- **Example VASP Implementations or Tests:**
+  - [Golang VASP using Gin](https://github.com/lightsparkdev/go-sdk/tree/main/examples/uma-server)
+  - [Rust VASP using activex_web](https://github.com/lightsparkdev/lightspark-rs/blob/main/examples/uma-demo/src/main.rs)
+  - [Kotlin VASP using ktor](https://github.com/lightsparkdev/kotlin-sdk/tree/develop/umaserverdemo)
+  - [Java tests for UMA](https://github.com/uma-universal-money-address/uma-kotlin-sdk/blob/main/javatest/src/test/java/me/uma/javatest/UmaTest.java)
+  - [Python Tests](https://github.com/uma-universal-money-address/uma-python-sdk/blob/main/uma/__tests__/test_uma.py)
+  - [Typescript VASP using express](https://github.com/lightsparkdev/js-sdk/tree/main/apps/examples/uma-vasp)
+- [UMA Discord](https://discord.gg/K4e7ghAJ)
+
+## Protocol Sequence Diagram
+
 ![UMA Protocol Diagram](https://static.swimlanes.io/96ce03b038caee40527168793d9cf984.png)
