@@ -1,8 +1,11 @@
 # UMAD-04: LNURLP Response
 
-The response to the LNURLP request is an extension of LNURL's [LUD-06](https://github.com/lnurl/luds/blob/luds/06.md). It also utilizes the payer data spec as described in [LUD-18](https://github.com/lnurl/luds/blob/luds/18.md) and a slightly modified version of the local currency spec proposed in [LUD-21](https://github.com/lnurl/luds/pull/207). The full structure of the LNURLP response is:
+The response to the LNURLP request is an extension of LNURL's [LUD-06](https://github.com/lnurl/luds/blob/luds/06.md).
+It also utilizes the payer data spec as described in [LUD-18](https://github.com/lnurl/luds/blob/luds/18.md) and a
+slightly modified version of the local currency spec proposed in [LUD-21](https://github.com/lnurl/luds/pull/207).
+The full structure of the LNURLP response is:
 
-```
+```raw
 {
   "callback": string,
   // Max millisatoshi amount the receiver is willing to receive.
@@ -52,4 +55,5 @@ The response to the LNURLP request is an extension of LNURL's [LUD-06](https://g
 }
 ```
 
-The signature here is over `sha256_hash(<receiver UMA> (eg. "$bob@vasp2.com") + nonce + timestamp)`. The receiving VASPs `signingPubKey` can be used by the sending VASP to verify the signature as described in [UMAD-02](/umad-02-keys-and-authentication.md).
+The signature here is over `sha256_hash(<receiver UMA> (eg. "$bob@vasp2.com") + nonce + timestamp)`.
+The receiving VASPs `signingPubKey` can be used by the sending VASP to verify the signature as described in [UMAD-02](/umad-02-keys-and-authentication.md).
