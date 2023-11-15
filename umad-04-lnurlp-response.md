@@ -27,7 +27,8 @@ The full structure of the LNURLP response is:
       // Number of digits after the decimal point for display on the sender side. For example,
       // in USD, by convention, there are 2 digits for cents - $5.95. in this case, `displayDecimals`
       // would be 2. Note that the multiplier is still always in the smallest unit (cents). This field
-      // is only for display purposes.
+      // is only for display purposes. The sender should assume zero if this field is ommitted, unless
+      // they know the proper display format of the target currency.
       "displayDecimals": number,
     },
     {
