@@ -55,7 +55,7 @@ Its structure is:
     // The sending VASP's signature over sha256_hash(<sender UMA> (eg. $alice@vasp1.com) + signatureNonce + signatureTimestamp),
     "signature": string,
     "signatureNonce": string,
-    "signatureTimestamp: number,
+    "signatureTimestamp": number,
     // A url which the receiving VASP should call on transaction completion to notify the sending VASP of
     // the utxos used to complete the transaction. See [UMAD-07](/umad-07-post-tx-hooks.md).
     "utxoCallback": string|undefined,
