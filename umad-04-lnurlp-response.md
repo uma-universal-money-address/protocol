@@ -25,11 +25,11 @@ The full structure of the LNURLP response is:
       // Estimated millisats per "unit" (eg. 1 cent in USD)
       "multiplier": number,
       // Number of digits after the decimal point for display on the sender side. For example,
-      // in USD, by convention, there are 2 digits for cents - $5.95. in this case, `displayDecimals`
+      // in USD, by convention, there are 2 digits for cents - $5.95. in this case, `decimals`
       // would be 2. Note that the multiplier is still always in the smallest unit (cents). This field
       // is only for display purposes. The sender should assume zero if this field is omitted, unless
       // they know the proper display format of the target currency.
-      "displayDecimals": number,
+      "decimals": number,
     },
     {
       "code": string, // eg. "BTC",
@@ -38,7 +38,7 @@ The full structure of the LNURLP response is:
       "minSendable": number,
       "maxSendable": number,
       "multiplier": 1 // estimated millisats per "unit" (eg. 1 cent in USD)
-      "displayDecimals": number,
+      "decimals": number,
     },
   ],
   // Required data about the payer. See LUD-18 for details.
