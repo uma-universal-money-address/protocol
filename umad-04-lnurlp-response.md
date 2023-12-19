@@ -115,3 +115,15 @@ The `multiplier` field is 2.466, indicating that there are 2.466 millisats per U
 the receiving user can receive between 1 USDCent and 100,000,000 USDCents. If a sender wanted to send 5.95 USDC, they would
 specify `amount: 5950000, currency: USDC` in their [payreq request](/umad-05-payreq-request.md), which should in turn create
 a Lightning invoice for 14,677,700 millisats (5,950,000 * 2.466) plus applicable conversion fees.
+
+## Note for very small currency units
+
+If the smallest unit of a currency is very small (eg. `multiplier` is .0001), it may be necessary to round up to a larger
+unit when actually sending the payment so that the `amount` field in the [payreq request](/umad-05-payreq-request.md) is
+can fit in an int64 and can be represented in millisats. For example, DAI has 18 decimals, so the smallest unit is 10^-18.
+In this case, trying to send 20 DAI would result in an `amount` of 20 * 10^18, which is too large to fit in an int64. For
+this reason, the maximum `decimals` allowed is 8. If a currency has more than 8 decimals, the `multiplier` should be
+increased to reduce the number of decimals. For example, if a currency has 10 decimals, the `multiplier` should be
+`100 * the number of millisats per the real smallest unit`, and you should set `decimals` to 8. Tweaking the `multiplier`
+and `decimals` fields in this way should allow the smallest unit to be represented in millisats and fit in an int64,
+although it may result in some loss of precision.
