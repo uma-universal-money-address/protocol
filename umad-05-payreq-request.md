@@ -22,7 +22,7 @@ The body of the request is a JSON object with the following fields:
     // See LUD-18 for details.
     <json payerdata>
   },
-  // This is the amount in the smallest unit of the specified receiving currency (eg. cents for USD).
+  // An int64 - This is the amount in the smallest unit of the specified receiving currency (eg. cents for USD).
   "amount": number,
   // The currency code of the receiving currency (eg. "USD"). This must be one of the currencies returned in the
   // LNURLP response.
