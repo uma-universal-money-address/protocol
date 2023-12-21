@@ -103,8 +103,8 @@ Lightning invoice for 10,000 millisats (10 * 1,000) plus applicable conversion f
   "code": "USDC",
   "name": "USDC",
   "symbol": "USDC",
-  "minSendable": 100000, // 100K
-  "maxSendable": 10000000000, // 10B
+  "minSendable": 1000000, // 1M
+  "maxSendable": 1000000000000, // 1T
   "multiplier": 2.34,
   "decimals": 6
 }
@@ -112,14 +112,14 @@ Lightning invoice for 10,000 millisats (10 * 1,000) plus applicable conversion f
 
 In this case, the `decimals` field is 6, indicating that the smallest unit of the currency is one USDC / 10^6.
 The `multiplier` field is 2.466, indicating that there are 2.466 millisats per USDC/10^6. This struct also indicates that
-the receiving user can receive between 1 USDCent and 100,000,000 USDCents. If a sender wanted to send 5.95 USDC, they would
+the receiving user can receive between 1 USDCent and 10,000 USDC. If a sender wanted to send 5.95 USDC, they would
 specify `amount: 5950000, currency: USDC` in their [payreq request](/umad-05-payreq-request.md), which should in turn create
 a Lightning invoice for 14,677,700 millisats (5,950,000 * 2.466) plus applicable conversion fees.
 
 ## Note for very small currency units
 
 If the smallest unit of a currency is very small (eg. `multiplier` is .0001), it may be necessary to round up to a larger
-unit when actually sending the payment so that the `amount` field in the [payreq request](/umad-05-payreq-request.md) is
+unit when actually sending the payment so that the `amount` field in the [payreq request](/umad-05-payreq-request.md)
 can fit in an int64 and can be represented in millisats. For example, DAI has 18 decimals, so the smallest unit is 10^-18.
 In this case, trying to send 20 DAI would result in an `amount` of 20 * 10^18, which is too large to fit in an int64. For
 this reason, the maximum `decimals` allowed is 8. If a currency has more than 8 decimals, the `multiplier` should be
