@@ -23,7 +23,9 @@ The full structure of the LNURLP response is:
     // The currency code of the receiving currency (eg. "USD"). This should match the requested currency in the payreq
     // request.
     "currencyCode": string,
-    // Millisats per "unit" of the receiving currency (eg. 1 cent in USD).
+    // Millisats per "unit" of the receiving currency (eg. 1 cent in USD). A double-precision floating point number.
+    // In this context, this is just for convenience. The conversion rate is also baked into the invoice amount itself.
+    // `invoice amount = amount * multiplier + exchangeFeesMillisatoshi`
     "multiplier": number,
     // The fees charged (in millisats) by the receiving VASP to convert to the target currency.
     // This is separate from the multiplier rate.
