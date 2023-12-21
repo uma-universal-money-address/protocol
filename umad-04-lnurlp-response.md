@@ -119,7 +119,7 @@ a Lightning invoice for 14,677,700 millisats (5,950,000 * 2.466) plus applicable
 ## Note for very small currency units
 
 If the smallest unit of a currency is very small (eg. `multiplier` is .0001), it may be necessary to round up to a larger
-unit when actually sending the payment so that the `amount` field in the [payreq request](/umad-05-payreq-request.md) 
+unit when actually sending the payment so that the `amount` field in the [payreq request](/umad-05-payreq-request.md)
 can fit in an int64 and can be represented in millisats. For example, DAI has 18 decimals, so the smallest unit is 10^-18.
 In this case, trying to send 20 DAI would result in an `amount` of 20 * 10^18, which is too large to fit in an int64. For
 this reason, the maximum `decimals` allowed is 8. If a currency has more than 8 decimals, the `multiplier` should be
