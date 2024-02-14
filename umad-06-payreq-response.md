@@ -36,6 +36,12 @@ The full structure of the LNURLP response is:
     // This is separate from the multiplier rate.
     "exchangeFeesMillisatoshi": number
   },
+  "payeeData": {
+    "name": string,
+    "identifier": string,
+    "countryCode": string,
+    ...other fields may be included if supported by receiver and requested by sender
+  },
   "umaVersion": "1.0",
 }
 ```
@@ -47,3 +53,11 @@ a hard cap on the conversion rate validity.
 As described in [UMAD-05](/umad-05-payreq-request.md), the `nodePubKey` and `utxos` fields are used for pre-screening
 by the sending VASP. The `utxoCallback` field is used by the receiving VASP to notify the sending VASP of the utxos
 used to complete the transaction. See [UMAD-07](/umad-07-post-tx-hooks.md) for details.
+
+Each key in the `payeeData` JSON object should correspond to a requested `payeeData` field from the `payeeData` record
+received from the sender in the payreq request. The receiving VASP can send any of the payee id kinds if they are listed
+in the `payeeData` record. But if any is marked as `"mandatory": true` then receiver MUST send them or otherwise
+not proceed with the payment flow. The receiving VASP SHOULD NOT send payee identity types omitted in payeeData record,
+none at all if the record is not present. Note that LUD-22 can be used in conjunction with LUD-18 to allow the payer to
+request that the payee provide identitifying information (which can be optionally verified by SERVICE) before sharing
+payee identity information.
