@@ -22,7 +22,7 @@ POST <utxoCallback>
 
 {
   "utxos": { "utxo": string, "amountMsats": number }[],
-  // Domain name of the VASP. Used when validating the signature.
+  // Domain name of the VASP calling this endpoint. Used when validating the signature.
   "vaspDomain": string,
   // The VASP's signature over sha256_hash(signatureNonce + signatureTimestamp),
   "signature": string,
