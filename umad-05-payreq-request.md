@@ -28,9 +28,38 @@ The body of the request is a JSON object with the following fields:
   // LNURLP response.
   "currency": string,
   // The UMA protocol version that will be used for this transaction. See [UMAD-08](/umad-08-versioning.md).
-  "umaVersion": "1.0"
+  "umaVersion": "1.0",
+  "payeeData":  {
+    "name": { "mandatory": boolean },
+    "identifier": { "mandatory": boolean },
+    "countryCode": { "mandatory": boolean },
+    ... All fields optional and more fields may be negotiated. See [LUD-22](https://github.com/lnurl/luds/pull/252)
+  },
 }
 ```
+
+## Payee Data
+
+The `payeeData` field is optional and is used to request additional information about the receiving user. The `mandatory`
+field in each subfield indicates whether the receiving VASP is required to provide that information to proceed with the transaction.
+See [LUD-22](https://github.com/lnurl/luds/pull/252) for more details. Note that the receiving VASP may choose to avoid sending
+any payee identity information for privacy reasons, which may cause the payment to fail if the sending VASP requires it.
+For that reason, the sender SHOULD NOT require any payee identity information to be sent by the receiver unless it is
+absolutely necessary.
+
+### Common Payee Data Fields
+
+The following is a non-exhaustive list of common payee data fields that *may* be requested by the sender:
+
+- `name`: The full name of the receiving user.
+- `identifier`: The canonical receiving UMA address of the receiver.
+- `countryCode`: The ISO 3166-1 alpha-2 country code of the receiving user.
+- `email`: The email address of the receiving user.
+- `accountNumber`: The account number of the receiving user at the receiving VASP.
+
+Note that this struct is extensible, so any field can be added as long as it is agreed upon by both VASPs.
+
+## Payer Data
 
 The `payerData` field is a JSON object that contains information about the payer as described in
 [LUD-18](https://github.com/lnurl/luds/blob/luds/18.md). There's also an UMA-specific payerdata field - `compliance`.
