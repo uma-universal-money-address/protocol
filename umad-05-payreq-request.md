@@ -81,8 +81,8 @@ examples. As it pertains to UMA, there are two main UX cases to accommodate:
   ```
 
   This informs the receiving VASP to construct a Lightning invoice for exactly 191,000 satoshis and to give their receiving
-  user the equivalent in Mexican pesos according to their agreed-upon conversion rate. This allows the sender to lock in the
-  amount they want to send in their own currency.
+  user the equivalent in Mexican pesos according to their agreed-upon conversion rate. This allows the sender to lock in
+  the amount they want to send in their own currency.
 
 ## Payee Data
 
