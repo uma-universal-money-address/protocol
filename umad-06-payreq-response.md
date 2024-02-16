@@ -19,13 +19,16 @@ The full structure of the LNURLP response is:
     // the utxos used to complete the transaction. See [UMAD-07](/umad-07-post-tx-hooks.md).
     "utxoCallback": string
   },
-  "paymentInfo": {
+  "converted": {
+    // The amount that the receiver will receive in the receiving currency not including fees. The amount is specified
+    // in the smallest unit of the currency (eg. cents for USD).
+    "amount": number, // int64
     // The currency code of the receiving currency (eg. "USD"). This should match the requested currency in the payreq
     // request.
     "currencyCode": string,
     // Millisats per "unit" of the receiving currency (eg. 1 cent in USD). A double-precision floating point number.
     // In this context, this is just for convenience. The conversion rate is also baked into the invoice amount itself.
-    // `invoice amount = amount * multiplier + exchangeFeesMillisatoshi`
+    // `invoice amount = amount * multiplier + fee`
     "multiplier": number,
     // Number of digits after the decimal point for the receiving currency. For example, in USD, by convention, there are
     // 2 digits for cents - $5.95. In this case, `decimals` would be 2. This should align with the currency's `decimals`
@@ -34,7 +37,7 @@ The full structure of the LNURLP response is:
     "decimals": number,
     // The fees charged (in millisats) by the receiving VASP to convert to the target currency.
     // This is separate from the multiplier rate.
-    "exchangeFeesMillisatoshi": number
+    "fee": number
   },
   "payeeData": {
     "name": string,

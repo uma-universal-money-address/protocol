@@ -22,11 +22,14 @@ The body of the request is a JSON object with the following fields:
     // See LUD-18 for details.
     <json payerdata>
   },
-  // An int64 - This is the amount in the smallest unit of the specified receiving currency (eg. cents for USD).
-  "amount": number,
-  // The currency code of the receiving currency (eg. "USD"). This must be one of the currencies returned in the
-  // LNURLP response.
-  "currency": string,
+  // An amount (int64) followed optionally by a "." and the sending currency code. For example: "100.USD" would send
+  // an amount equivalent to $1 USD. Note that the amount is specified in the smallest unit of the specified
+  // currency (eg. cents for USD). Omitting the currency code will default to specifying the amount in millisats.
+  "amount": string,
+  // The currency code of the receiving currency (eg. "USD") to which the receiving VASP will convert into when the
+  // transaction completes. This must be one of the currencies returned in the LNURLP response, and it must have
+  // been a currency with a "convertible" field.
+  "convert": string,
   // The UMA protocol version that will be used for this transaction. See [UMAD-08](/umad-08-versioning.md).
   "umaVersion": "1.0",
   "payeeData":  {
@@ -37,6 +40,49 @@ The body of the request is a JSON object with the following fields:
   },
 }
 ```
+
+## Currency field examples
+
+The currency spec here is as specified by [LUD-21](https://github.com/lnurl/luds/pull/251), with the caveat that UMA's
+payreq request uses a POST and JSON body instead of a GET request with query parameters. Please see the spec for more
+examples. As it pertains to UMA, there are two main UX cases to accommodate:
+
+1. **The sender wants to send exactly a certain amount in the receiving currency.**
+
+For example, if a user in the US is paying for some goods or services in Europe, they might need to send *exactly* some
+amount in euros. In this case, the sender would enter the amount in the receiving currency. Fields specified by the
+sending VASP in the payreq request would look like:
+
+```json
+{
+  "amount": "100.EUR",
+  "convert": "EUR",
+  // ... other fields
+}
+```
+
+This informs the receiving VASP to construct a Lightning invoice which will be converted to 100 euros for their user. This
+should include the conversion rate and any fees in the invoice itself to ensure that the receiver gets exactly 100 euros.
+
+2. **The sender wants to send exactly a certain amount in their own currency.**
+
+For example, the sending user has $100 USD and they want to send exactly that amount to their family in Mexico. They would
+enter the amount in their own currency. However, their own sending VASP is responsible for the onramp from their sending
+currency to bitcoin. The sending VASP can guarantee that conversion rate to their user out-of-band of the UMA protocol.
+For example, maybe they've agreed that for $100, they will give the user exactly 191,000 satoshis. Fields specified by
+the sending VASP in the payreq request would then look like:
+
+```json
+{
+  "amount": "191000000", // 191,000,000 millisats, so the currency code is omitted.
+  "convert": "MXN",
+  // ... other fields
+}
+```
+
+This informs the receiving VASP to construct a Lightning invoice for exactly 191,000 satoshis and to give their receiving
+user the equivalent in Mexican pesos according to their agreed-upon conversion rate. This allows the sender to lock in the
+amount they want to send in their own currency.
 
 ## Payee Data
 
