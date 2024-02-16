@@ -49,40 +49,40 @@ examples. As it pertains to UMA, there are two main UX cases to accommodate:
 
 1. **The sender wants to send exactly a certain amount in the receiving currency.**
 
-For example, if a user in the US is paying for some goods or services in Europe, they might need to send *exactly* some
-amount in euros. In this case, the sender would enter the amount in the receiving currency. Fields specified by the
-sending VASP in the payreq request would look like:
+  For example, if a user in the US is paying for some goods or services in Europe, they might need to send *exactly* some
+  amount in euros. In this case, the sender would enter the amount in the receiving currency. Fields specified by the
+  sending VASP in the payreq request would look like:
 
-```json
-{
-  "amount": "100.EUR",
-  "convert": "EUR",
-  // ... other fields
-}
-```
+  ```json
+  {
+    "amount": "100.EUR",
+    "convert": "EUR",
+    // ... other fields
+  }
+  ```
 
-This informs the receiving VASP to construct a Lightning invoice which will be converted to 100 euros for their user. This
-should include the conversion rate and any fees in the invoice itself to ensure that the receiver gets exactly 100 euros.
+  This informs the receiving VASP to construct a Lightning invoice which will be converted to 100 euros for their user. This
+  should include the conversion rate and any fees in the invoice itself to ensure that the receiver gets exactly 100 euros.
 
-2. **The sender wants to send exactly a certain amount in their own currency.**
+1. **The sender wants to send exactly a certain amount in their own currency.**
 
-For example, the sending user has $100 USD and they want to send exactly that amount to their family in Mexico. They would
-enter the amount in their own currency. However, their own sending VASP is responsible for the onramp from their sending
-currency to bitcoin. The sending VASP can guarantee that conversion rate to their user out-of-band of the UMA protocol.
-For example, maybe they've agreed that for $100, they will give the user exactly 191,000 satoshis. Fields specified by
-the sending VASP in the payreq request would then look like:
+  For example, the sending user has $100 USD and they want to send exactly that amount to their family in Mexico. They would
+  enter the amount in their own currency. However, their own sending VASP is responsible for the onramp from their sending
+  currency to bitcoin. The sending VASP can guarantee that conversion rate to their user out-of-band of the UMA protocol.
+  For example, maybe they've agreed that for $100, they will give the user exactly 191,000 satoshis. Fields specified by
+  the sending VASP in the payreq request would then look like:
 
-```json
-{
-  "amount": "191000000", // 191,000,000 millisats, so the currency code is omitted.
-  "convert": "MXN",
-  // ... other fields
-}
-```
+  ```json
+  {
+    "amount": "191000000", // 191,000,000 millisats, so the currency code is omitted.
+    "convert": "MXN",
+    // ... other fields
+  }
+  ```
 
-This informs the receiving VASP to construct a Lightning invoice for exactly 191,000 satoshis and to give their receiving
-user the equivalent in Mexican pesos according to their agreed-upon conversion rate. This allows the sender to lock in the
-amount they want to send in their own currency.
+  This informs the receiving VASP to construct a Lightning invoice for exactly 191,000 satoshis and to give their receiving
+  user the equivalent in Mexican pesos according to their agreed-upon conversion rate. This allows the sender to lock in the
+  amount they want to send in their own currency.
 
 ## Payee Data
 
