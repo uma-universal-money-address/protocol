@@ -18,7 +18,8 @@ The full structure of the LNURLP response is:
     // A url which the sending VASP should call on transaction completion to notify the receiving VASP of
     // the utxos used to complete the transaction. See [UMAD-07](/umad-07-post-tx-hooks.md).
     "utxoCallback": string,
-    // The receiving VASP's signature over sha256_hash(<sender UMA> (eg. $alice@vasp1.com) + signatureNonce + signatureTimestamp).
+    // The receiving VASP's signature over sha256_hash(<sender UMA> (eg. $alice@vasp1.com) + <receiver UMA> (eg. $bob@vasp2.com) +
+    // signatureNonce + signatureTimestamp)
     "signature": string,
     "signatureNonce": string,
     "signatureTimestamp": number, // in seconds since epoch
