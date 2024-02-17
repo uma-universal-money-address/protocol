@@ -33,6 +33,7 @@ The body of the request is a JSON object with the following fields:
   // The UMA protocol version that will be used for this transaction. See [UMAD-08](/umad-08-versioning.md).
   "umaVersion": "1.0",
   "payeeData":  {
+    "compliance": { "mandatory": boolean },
     "name": { "mandatory": boolean },
     "identifier": { "mandatory": boolean },
     "countryCode": { "mandatory": boolean },
