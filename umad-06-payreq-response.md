@@ -32,8 +32,6 @@ The full structure of the LNURLP response is:
   },
   "payeeData": {
     "compliance": {
-      // [enum] KYC state indicating whether the receiver is a KYC'd customer of VASP2.
-      "kycStatus": KycStatus,
       // Public key of the recipient node for pre-screening.
       "nodePubKey": string,
       // A list of the expected UTXOs over which the receiver may receive the transaction (receiver's channels).
