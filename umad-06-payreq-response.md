@@ -10,20 +10,6 @@ The full structure of the LNURLP response is:
   "pr": string,
   // Empty for legcy LNURL reasons.
   "routes": [],
-  "compliance": {
-    // Public key of the recipient node for pre-screening.
-    "nodePubKey": string,
-    // A list of the expected UTXOs over which the receiver may receive the transaction (receiver's channels).
-    "utxos": string[],
-    // A url which the sending VASP should call on transaction completion to notify the receiving VASP of
-    // the utxos used to complete the transaction. See [UMAD-07](/umad-07-post-tx-hooks.md).
-    "utxoCallback": string,
-    // The receiving VASP's signature over sha256_hash(<sender UMA> (eg. $alice@vasp1.com) + <receiver UMA> (eg. $bob@vasp2.com) +
-    // signatureNonce + signatureTimestamp)
-    "signature": string,
-    "signatureNonce": string,
-    "signatureTimestamp": number, // in seconds since epoch
-  },
   "converted": {
     // The amount that the receiver will receive in the receiving currency not including fees. The amount is specified
     // in the smallest unit of the currency (eg. cents for USD).
@@ -45,6 +31,20 @@ The full structure of the LNURLP response is:
     "fee": number
   },
   "payeeData": {
+    "compliance": {
+      // Public key of the recipient node for pre-screening.
+      "nodePubKey": string,
+      // A list of the expected UTXOs over which the receiver may receive the transaction (receiver's channels).
+      "utxos": string[],
+      // A url which the sending VASP should call on transaction completion to notify the receiving VASP of
+      // the utxos used to complete the transaction. See [UMAD-07](/umad-07-post-tx-hooks.md).
+      "utxoCallback": string,
+      // The receiving VASP's signature over sha256_hash(<sender UMA> (eg. $alice@vasp1.com) + <receiver UMA> (eg. $bob@vasp2.com) +
+      // signatureNonce + signatureTimestamp)
+      "signature": string,
+      "signatureNonce": string,
+      "signatureTimestamp": number, // in seconds since epoch
+    },
     "name": string,
     "identifier": string,
     "countryCode": string,

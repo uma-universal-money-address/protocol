@@ -53,8 +53,8 @@ The full structure of the LNURLP response is:
     "kycStatus": KycStatus, // [enum] KYC state indicating whether the receiver is a KYC'd customer of VASP2.
     "signature": string, // hex encoded
     "signatureNonce": string,
-    "signatureTimestamp": number // secs since epoch
-    "receiverIdentifier": string // The identity of the receiver at VASP2
+    "signatureTimestamp": number, // secs since epoch
+    "receiverIdentifier": string, // The identity of the receiver at VASP2
   },
   "umaVersion": "1.0", // The UMA protocol version that will be used for this transaction.
   "tag": "payRequest",
