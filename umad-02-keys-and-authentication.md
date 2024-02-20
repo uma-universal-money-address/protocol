@@ -25,15 +25,16 @@ section.
 
 ## Public Key Exchange
 
-TThe UMA protocol relies on X.509 certificates for public key exchange among VASPs. In order to obtain an X.509 certificate, the
-VASP is required to submit a request to a trusted certificate authority (CA), which issues the certificate. The issuing CA must keep
-track of certificates that are revoked, and provide this information to other parties via Certificate Revocation Lists (CRLs)
-or an Online Certificate Status Protocol (OCSP) server. The URLs for accessing a CA's CRL/OCSP can be found inside the certificate,
-and VASPs should ensure the validity of all of the certificates they receive to ensure compliance and security.
+TThe UMA protocol relies on X.509 certificates for public key exchange among VASPs. In order to obtain an X.509
+certificate, the VASP is required to submit a request to a trusted certificate authority (CA), which issues the
+certificate. The issuing CA must keep track of certificates that are revoked, and provide this information to other
+parties via Certificate Revocation Lists (CRLs) or an Online Certificate Status Protocol (OCSP) server. The URLs for
+accessing a CA's CRL/OCSP can be found inside the certificate, and VASPs should ensure the validity of all of the
+certificates they receive to ensure compliance and security.
 
-It is not recommended for VASPs to use self-signed certificates when communicating with other VASPs outside their organization.
-They should only be used in test environments. To generate a self-signed X.509 certificate based on the key generated above,
-run:
+It is not recommended for VASPs to use self-signed certificates when communicating with other VASPs outside their
+organization. They should only be used in test environments. To generate a self-signed X.509 certificate based on the
+key generated above, run:
 
 ```bash
 # Generate a certificate based on the key we generated:
@@ -57,21 +58,23 @@ VASPs expose their certificates to other VASPs by responding to `GET` requests a
 }
 ```
 
-VASPs can revoke their certificates if their keys are compromised or if they want to rotate their keys for security reasons. For this
-reason, VASPs should periodically check certificates for revocation. In the event that the counter party's certificate is revoked, the VASP
-can request a new set of certificates at the same endpoint and validate them. Optionally, the counter party can specify an expiration
-timestamp at which the VASP is required to revalidate or refresh their certificates, outside of periodic validation.
+VASPs can revoke their certificates if their keys are compromised or if they want to rotate their keys for security
+reasons. For this reason, VASPs should periodically check certificates for revocation. In the event that the counter
+party's certificate is revoked, the VASP can request a new set of certificates at the same endpoint and validate them.
+Optionally, the counter party can specify an expiration timestamp at which the VASP is required to revalidate or
+refresh their certificates, outside of periodic validation.
 
 ## Authentication
 
 Some messages in the UMA protcol must be signed by the VASP who created the message using ECDSA and the secp256k1 keys
 as described above. Signatures are created using a VASP's private signing key. The signature is then verified by the
-receiving VASP using the sending VASP's signing public key from the `signingCertificate`. The signature is included in the message
-itself, along with the sending VASP's domain if needed. The receiving VASP can then verify the signature using the public key and
- ensure that the message was not tampered with.
+receiving VASP using the sending VASP's signing public key from the `signingCertificate`. The signature is included in
+the message itself, along with the sending VASP's domain if needed. The receiving VASP can then verify the signature
+using the public key and ensure that the message was not tampered with.
 
 ## Encryption
 
-VASPs encrypt sensitive information like payment and Travel Rule information using the receiving VASP's encryption public key from
-the `encryptionCertificate` via [ECIES](https://cryptobook.nakov.com/asymmetric-key-ciphers/ecies-public-key-encryption). The receiving
-VASP can then decrypt the data using their private encryption key only when required for compliance reasons.
+VASPs encrypt sensitive information like payment and Travel Rule information using the receiving VASP's encryption
+public key from the `encryptionCertificate` via
+[ECIES](https://cryptobook.nakov.com/asymmetric-key-ciphers/ecies-public-key-encryption). The receiving VASP can then
+decrypt the data using their private encryption key only when required for compliance reasons.
