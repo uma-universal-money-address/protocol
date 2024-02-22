@@ -25,26 +25,9 @@ section.
 
 ## Public Key Exchange
 
-The UMA protocol relies on X.509 certificates for public key exchange among VASPs. If a VASP trusts the party that they
-wish to transact with, typically established through prior communication, self-signed certificates are a suitable
-solution for key exchange. VASPs can create self-signed certificates wrapping the public keys generated above using
-common tools such as `openssl`, and share these certificates with their counterparty. It is important to note that
-self-signed certificates don't provide a good revocation mechanism, so it is recommended to use a short caching
-duration (on the order of a few minutes) to minimize the risk of key compromise.
-
-In cases where VASPs don't recognize their counterparty's identity, it is recommended to use signed certificates
-issued by a trusted source, such as a VASP ID Authority or a Certificate Authority. When a VASP receives a signed
-certificate, they can check if an authority that they trust has signed the certificate, and hence, trust the underlying
-VASP. VASPs have the ability to invalidate their certificates in the case of key compromise or security-related key
-rotations. The issuing CA must keep track of certificates that are revoked, and provide this information to other
-parties via Certificate Revocation Lists (CRLs) or an Online Certificate Status Protocol (OCSP) server. The URLs for
-accessing a CA's CRL/OCSP can be found inside the certificate, and VASPs should periodically check the validity of the
-certificates they receive to ensure compliance and security. In the event that the counterparty's certificate is
-revoked, the VASP can request a new set of certificates and validate them. Optionally, the counterparty can specify an
-expiration timestamp at which the VASP is required to revalidate the certificates, in addition to periodic validation.
-
-VASPs expose their certificates to other VASPs by responding to `GET` requests at the endpoint
-`https://<vaspdomain>/.well-known/lnurlpubkey`. This endpoint returns a JSON object with the following structure:
+The UMA protocol relies on X.509 certificates for public key exchange among VASPs. VASPs expose their certificates to
+other VASPs by responding to `GET` requests at the endpoint `https://<vaspdomain>/.well-known/lnurlpubkey`. This
+endpoint returns a JSON object with the following structure:
 
 ```json
 {
@@ -57,6 +40,31 @@ VASPs expose their certificates to other VASPs by responding to `GET` requests a
   "expirationTimestamp": number
 }
 ```
+
+If a VASP trusts the party that they wish to transact with, typically established through prior communication,
+self-signed certificates are a suitable solution for key exchange. VASPs can create self-signed certificates wrapping
+the public keys generated above using common tools such as `openssl`, and expose these certificates to counterparties
+via the public API outlined above. It is important to note that self-signed certificates don't provide a good
+revocation mechanism, so it is recommended to use a short caching duration (on the order of a few minutes) to minimize
+the risk of key compromise.
+
+Because the `/.well-known/lnurlpubkey` endpoint is hosted directly on the VASP's domain, it is easy for other VASPs to
+verify that the keys they receive are actually from the VASP they are trying to communicate with. It does, however,
+imply trust in the VASP's domain and DNS. As an additional security measure, VASPs can also verify the authenticity of
+the certificates they receive by communicating with a **VASP Identity Authority**, a trusted 3rd party who maintains a
+mapping from VASP domains to certificates. This step is optional and any VASP ID Authority will provide APIs or
+interfaces separate from UMA.
+
+A VASP can inspire more trust from its counterparties by retrieving and using a certificate signed by a trusted VASP ID
+Authority. When a VASP receives a signed certificate, they can check if it is signed by an authority that they trust,
+and hence, trust the underlying VASP. VASPs have the ability to invalidate their certificates in the case of key
+compromise or security-related key rotations. The issuing ID authority must keep track of certificates that are
+revoked, and provide this information to counterparties via Certificate Revocation Lists (CRLs) or an Online
+Certificate Status Protocol (OCSP) server. The URLs for accessing an ID authority's CRL/OCSP can be found inside the
+certificate, and VASPs should periodically check the validity of the certificates they receive to ensure compliance and
+security. In the event that the counterparty's certificate is revoked, the VASP can request a new set of certificates
+and validate them. Optionally, the counterparty can specify an expiration timestamp at which the VASP is required to
+revalidate the certificates, in addition to periodic validation.
 
 ## Authentication
 
