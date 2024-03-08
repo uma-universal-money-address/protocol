@@ -11,7 +11,7 @@ to create secp256k1 keys using openssl, run:
 
 ```bash
 # Generate a secp256k1 key:
-$ openssl ecparam -genkey -name secp256k1 -out ec_key.pem -param_enc explicit
+$ openssl ecparam -genkey -name secp256k1 -out ec_key.pem
 
 # Print out the key data:
 $ openssl ec -in ec_key.pem -noout -text
