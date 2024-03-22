@@ -49,7 +49,7 @@ revocation mechanism, so it is recommended to use a short caching duration (on t
 the risk of key compromise. To generate a self-signed X.509 certificate wrapping the public key generated above, run:
 
 ```bash
-# Generate an x509 certificate:
+# Generate an x509 certificate from your existing ec_key.pem above:
 $ openssl req -new -x509 -key ec_key.pem -sha256 -nodes -out ec_crt.crt -days <expiration in days>
 
 # Print out the PEM representation of the certificate:
