@@ -31,9 +31,9 @@ endpoint returns a JSON object with the following structure:
 
 ```json
 {
-  // Used to verify signatures from VASP1. PEM-encoded X.509 certificate string.
+  // Used to verify signatures from VASP1. Hex string representation of a DER-encoded X.509 certificate.
   "signingCertificate": string,
-  // Used to encrypt TR info sent to VASP1. PEM-encoded X.509 certificate string.
+  // Used to encrypt TR info sent to VASP1. Hex string representation of a DER-encoded X.509 certificate.
   "encryptionCertificate": string,
   // [Optional] Sec since epoch at which these certificates must be revalidated or refreshed.
   // If not specified, the certificates will not be cached.
@@ -46,7 +46,15 @@ self-signed certificates are a suitable solution for key exchange. VASPs can cre
 the public keys generated above using common tools such as `openssl`, and expose these certificates to counterparties
 via the public API outlined above. It is important to note that self-signed certificates don't provide a good
 revocation mechanism, so it is recommended to use a short caching duration (on the order of a few minutes) to minimize
-the risk of key compromise.
+the risk of key compromise. To generate a self-signed X.509 certificate wrapping the public key generated above, run:
+
+```bash
+# Generate an x509 certificate:
+$ openssl req -new -x509 -key ec_key.pem -sha256 -nodes -out ec_crt.crt -days <expiration in days>
+
+# Print out the PEM representation of the certificate:
+$ openssl x509 -in ec_crt.crt -outform PEM
+```
 
 Because the `/.well-known/lnurlpubkey` endpoint is hosted directly on the VASP's domain, it is easy for other VASPs to
 verify that the keys they receive are actually from the VASP they are trying to communicate with. It does, however,
