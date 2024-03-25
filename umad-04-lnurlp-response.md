@@ -2,7 +2,7 @@
 
 The response to the LNURLP request is an extension of LNURL's [LUD-06](https://github.com/lnurl/luds/blob/luds/06.md).
 It also utilizes the payer data spec as described in [LUD-18](https://github.com/lnurl/luds/blob/luds/18.md) and a
-slightly modified version of the local currency spec proposed in [LUD-21](https://github.com/lnurl/luds/pull/207).
+slightly modified version of the local currency spec proposed in [LUD-21](https://github.com/lnurl/luds/pull/251).
 The full structure of the LNURLP response is:
 
 ```raw
@@ -20,8 +20,6 @@ The full structure of the LNURLP response is:
       "code": string, // eg. "PHP",
       "name": string, // eg. "Philippine Pesos",
       "symbol": string, // eg. "₱",
-      "minSendable": number,
-      "maxSendable": number,
       // Estimated millisats per "unit" (eg. 1 cent in USD). A double-precision floating point number.
       "multiplier": number,
       // Number of digits after the decimal point for display on the sender side, and to add clarity around what the
@@ -31,6 +29,14 @@ The full structure of the LNURLP response is:
       // means. For example, if the currency is "BTC" and the multiplier is 1000, really we're exchanging in SATs, so
       // `decimals` would be 8.
       "decimals": number,
+      // The inclusion of a convertible field implies the receiving VASP can quote and guarantee a price for a given
+      // currency.
+      "convertible": {
+        // Minimum and maximium amounts the receiver is willing/able to convert to this currency in the smallest unit of
+        // the currency. For example, if the currency is USD, the smallest unit is cents.
+        "min": number, // 64-bit integer (long/int64)
+        "max": number, // 64-bit integer (long/int64)
+      }
     },
   ],
   // Required data about the payer. See LUD-18 for details.
@@ -47,8 +53,8 @@ The full structure of the LNURLP response is:
     "kycStatus": KycStatus, // [enum] KYC state indicating whether the receiver is a KYC'd customer of VASP2.
     "signature": string, // hex encoded
     "signatureNonce": string,
-    "signatureTimestamp": number // secs since epoch
-    "receiverIdentifier": string // The identity of the receiver at VASP2
+    "signatureTimestamp": number, // secs since epoch
+    "receiverIdentifier": string, // The identity of the receiver at VASP2
   },
   "umaVersion": "1.0", // The UMA protocol version that will be used for this transaction.
   "tag": "payRequest",
@@ -67,10 +73,12 @@ Here are some additional examples of the `currencies` field to illustrate how th
   "code": "USD",
   "name": "US Dollars",
   "symbol": "$",
-  "minSendable": 1,
-  "maxSendable": 1000000, // 1M
   "multiplier": 23400,
-  "decimals": 2
+  "decimals": 2,
+  "convertible": {
+    "min": 1,
+    "max": 1000000
+  },
 }
 ```
 
@@ -85,10 +93,12 @@ invoice for 13,923,000 millisats (595 * 23,400) plus applicable conversion fees.
   "code": "BTC",
   "name": "Bitcoin",
   "symbol": "₿",
-  "minSendable": 1,
-  "maxSendable": 100000000, // 100M
   "multiplier": 1000,
-  "decimals": 8
+  "decimals": 8,
+  "convertible": {
+    "min": 1,
+    "max": 100000000
+  },
 },
 ```
 
@@ -103,10 +113,12 @@ Lightning invoice for 10,000 millisats (10 * 1,000) plus applicable conversion f
   "code": "USDC",
   "name": "USDC",
   "symbol": "USDC",
-  "minSendable": 1000000, // 1M
-  "maxSendable": 1000000000000, // 1T
   "multiplier": 2.34,
-  "decimals": 6
+  "decimals": 6,
+  "convertible": {
+    "min": 1000000, // 1M
+    "max": 1000000000000 // 1T
+  },
 }
 ```
 
