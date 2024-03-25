@@ -31,10 +31,10 @@ endpoint returns a JSON object with the following structure:
 
 ```json
 {
-  // Used to verify signatures from VASP1. Hex string representation of a DER-encoded X.509 certificate.
-  "signingCertificate": string,
-  // Used to encrypt TR info sent to VASP1. Hex string representation of a DER-encoded X.509 certificate.
-  "encryptionCertificate": string,
+  // Used to verify signatures from VASP1. List of certificates (hex-encoded X.509 DER) ordered from leaf to root.
+  "signingCertChain": string[],
+  // Used to encrypt TR info sent to VASP1. List of certificates (hex-encoded X.509 DER) ordered from leaf to root.
+  "encryptionCertChain": string[],
   // [Optional] Sec since epoch at which these certificates must be revalidated or refreshed.
   // If not specified, the certificates will not be cached.
   "expirationTimestamp": number
