@@ -78,13 +78,13 @@ revalidate the certificates, in addition to periodic validation.
 
 Some messages in the UMA protocol must be signed by the VASP who created the message using ECDSA and the secp256k1 keys
 as described above. Signatures are created using a VASP's private signing key. The signature is then verified by the
-receiving VASP using the sending VASP's signing public key from the `signingCertificate`. The signature is included in
+receiving VASP using the sending VASP's signing public key from the `signingCertChain`. The signature is included in
 the message itself, along with the sending VASP's domain if needed. The receiving VASP can then verify the signature
 using the public key and ensure that the message was not tampered with.
 
 ## Encryption
 
 VASPs encrypt sensitive information like payment and Travel Rule information using the receiving VASP's encryption
-public key from the `encryptionCertificate` via
+public key from the `encryptionCertChain` via
 [ECIES](https://cryptobook.nakov.com/asymmetric-key-ciphers/ecies-public-key-encryption). The receiving VASP can then
 decrypt the data using their private encryption key only when required for compliance reasons.
