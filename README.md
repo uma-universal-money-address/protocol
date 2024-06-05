@@ -38,4 +38,4 @@ This repo is organized as a set of individual documents describing a single mess
 
 ## Protocol Sequence Diagram
 
-![UMA Protocol Diagram](https://static.swimlanes.io/96ce03b038caee40527168793d9cf984.png)
+![UMA Protocol Diagram](https://static.swimlanes.io/45937cd6863fe73964d5f1217320d80e.png)
