@@ -17,6 +17,7 @@ This repo is organized as a set of individual documents describing a single mess
 | [UMAD-07](/umad-07-post-tx-hooks.md)           | Post Transaction Compliance Hooks    |
 | [UMAD-08](/umad-08-versioning.md)              | Versioning                           |
 | [UMAD-09](/umad-09-invoice.md)                 | Invoice                              |
+| [UMAD-11](/umad-11-request.md)                 | Request                              |
 
 ## Additional Resources
 
