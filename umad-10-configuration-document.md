@@ -22,3 +22,19 @@ The configuration document MAY contain the following fields:
 
 - `uma_request_endpoint`: The URL to which UMA requests can be sent. This should be a URL that the receiving VASP can use
   to send UMA requests to the sending VASP. See [UMAD-11](/umad-11-request.md) for more details.
+
+## Example Configuration Document
+
+```http
+GET https://coolvasp.net/.well-known/uma-configuration
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+Access-Control-Allow-Origin: *
+
+{
+  "name": "Cool VASP",
+  "uma_major_versions": [0, 1],
+  "uma_request_endpoint": "https://coolvasp.net/path/to/request/url"
+}
+```
