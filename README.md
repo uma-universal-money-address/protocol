@@ -19,6 +19,15 @@ This repo is organized as a set of individual documents describing a single mess
 | [UMAD-09](/umad-09-invoice.md)                 | Invoice                              |
 | [UMAD-11](/umad-11-request.md)                 | Request                              |
 
+## Extensions
+
+UMA has a number of extensions that can be implemented by VASPs to provide additional functionality. These extensions are
+not part of the core UMA payment protocol, but are defined here for reference.
+
+| Link                                           | Title                                |
+| ---------------------------------------------- | ------------------------------------ |
+| [UMADE-01](/umade-01-auth.md)                  | UMA Auth                             |
+
 ## Additional Resources
 
 - [Full Documentation and Guides](https://docs.uma.me)
