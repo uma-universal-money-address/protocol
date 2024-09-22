@@ -36,6 +36,10 @@ to user resources. Because NWC and UMA Auth connect client apps to arbitrary wal
 every client app to register with every wallet service or UMA provider. Instead, the Nostr protocol is used for
 decentralized client app registration.
 
+![Client App Registration](../images/auth-app-identity-flow.png)
+
+When an application wants to use UMA Auth, it generates a single Nostr keypair that identifies the application. This
+
 When an application wants to use UMA Auth, it generates a single Nostr keypair that indentifies the appplication. This
 is called the "identity keypair". An application should have a single identity keypair that represents the application
 as opposed to one for each app instance or user. The identity keypair is used to sign and publish a nostr registration
@@ -216,7 +220,7 @@ The VASP will respond with the same format as the initial access token request. 
 ## NWC Requests
 
 Requests should be made to the `nwc_connection_uri` provided in the token response. For details on the NWC protocol, see
-[NIP-47](https://github.com/nostr-protocol/nips/blob/master/47.md). 
+[NIP-47](https://github.com/nostr-protocol/nips/blob/master/47.md).
 
 ### Pending NIP PRs Adopted in UMA Auth
 

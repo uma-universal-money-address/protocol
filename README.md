@@ -26,7 +26,7 @@ not part of the core UMA payment protocol, but are defined here for reference.
 
 | Link                                           | Title                                |
 | ---------------------------------------------- | ------------------------------------ |
-| [UMADE-01](/umade-01-auth.md)                  | UMA Auth                             |
+| [UMADE-01](/extensions/umade-01-auth.md)                  | UMA Auth                             |
 
 ## Additional Resources
 
