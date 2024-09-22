@@ -277,3 +277,4 @@ use NIP-44 for encryption and decryption of messages.
 - [VASP Open API Schema](https://github.com/uma-universal-money-address/uma-auth-api)
 - [UMA NWC Docker Image](https://github.com/uma-universal-money-address/uma-nwc-server). See the documentation for
   more info.
+- [UMA Auth CLI tool](https://github.com/uma-universal-money-address/uma-auth-cli)
