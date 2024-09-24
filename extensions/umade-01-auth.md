@@ -38,8 +38,6 @@ decentralized client app registration.
 
 ![Client App Registration](../images/auth-app-identity-flow.png)
 
-When an application wants to use UMA Auth, it generates a single Nostr keypair that identifies the application. This
-
 When an application wants to use UMA Auth, it generates a single Nostr keypair that indentifies the appplication. This
 is called the "identity keypair". An application should have a single identity keypair that represents the application
 as opposed to one for each app instance or user. The identity keypair is used to sign and publish a nostr registration
