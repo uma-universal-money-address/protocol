@@ -55,7 +55,7 @@ Access-Control-Allow-Origin: *
 {
   "name": "Cool VASP",
   "uma_major_versions": [0, 1],
-  "uma_request_endpoint": "https://coolvasp.net/path/to/request/url"
+  "uma_request_endpoint": "https://coolvasp.net/path/to/request/url",
 
   "authorization_endpoint": "https://coolvasp.net/oauth/auth",
   "token_endpoint": "https://coolvasp.net/oauth/token",
