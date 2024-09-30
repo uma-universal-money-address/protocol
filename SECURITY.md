@@ -4,7 +4,6 @@ The UMA project takes security very seriously. We appreciate responsible
 disclosure of security issues and will endeavor to acknowledge your
 contributions.
 
-
 ## Reporting a Vulnerability
 
 If you believe you have found a security issue or problem, please report
