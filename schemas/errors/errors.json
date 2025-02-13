@@ -1,0 +1,124 @@
+{
+  "errors": [
+    {
+      "code": "COUNTERPARTY_PUBKEY_FETCH_ERROR",
+      "httpStatusCode": 424,
+      "description": "Error fetching counterparty public key for validating signatures or encrypting messages"
+    },
+    {
+      "code": "INVALID_PUBKEY_FORMAT",
+      "httpStatusCode": 400,
+      "description": "Error parsing the counterparty public key response"
+    },
+    {
+      "code": "CERT_CHAIN_INVALID",
+      "httpStatusCode": 400,
+      "description": "The provided certificate chain is invalid"
+    },
+    {
+      "code": "CERT_CHAIN_EXPIRED",
+      "httpStatusCode": 400,
+      "description": "The provided certificate chain has expired"
+    },
+    {
+      "code": "INVALID_SIGNATURE",
+      "httpStatusCode": 401,
+      "description": "The provided signature is not valid"
+    },
+    {
+      "code": "INVALID_TIMESTAMP",
+      "httpStatusCode": 400,
+      "description": "The provided timestamp is not valid"
+    },
+    {
+      "code": "INVALID_NONCE",
+      "httpStatusCode": 400,
+      "description": "The provided nonce is not valid"
+    },
+    {
+      "code": "INTERNAL_ERROR",
+      "httpStatusCode": 500,
+      "description": "An unexpected error occurred on the server"
+    },
+    {
+      "code": "NON_UMA_LNURL_NOT_SUPPORTED",
+      "httpStatusCode": 403,
+      "description": "This party does not support non-UMA LNURLs"
+    },
+    {
+      "code": "MISSING_REQUIRED_UMA_PARAMETERS",
+      "httpStatusCode": 400,
+      "description": "Missing required UMA parameters"
+    },
+    {
+      "code": "UNSUPPORTED_UMA_VERSION",
+      "httpStatusCode": 412,
+      "description": "The counterparty UMA version is not supported"
+    },
+    {
+      "code": "PARSE_LNURLP_REQUEST_ERROR",
+      "httpStatusCode": 400,
+      "description": "Error parsing the LNURLP request"
+    },
+    {
+      "code": "VELOCITY_LIMIT_EXCEEDED",
+      "httpStatusCode": 403,
+      "description": "This user has exceeded the velocity limit and is unable to receive payments at this time"
+    },
+    {
+      "code": "USER_NOT_FOUND",
+      "httpStatusCode": 404,
+      "description": "The user for this UMA was not found"
+    },
+    {
+      "code": "USER_NOT_READY",
+      "httpStatusCode": 403,
+      "description": "The user for this UMA is not ready to receive payments at this time"
+    },
+    {
+      "code": "REQUEST_NOT_FOUND",
+      "httpStatusCode": 404,
+      "description": "The request corresponding to this callback URL was not found"
+    },
+    {
+      "code": "PARSE_PAYREQ_REQUEST_ERROR",
+      "httpStatusCode": 400,
+      "description": "Error parsing the payreq request"
+    },
+    {
+      "code": "AMOUNT_OUT_OF_RANGE",
+      "httpStatusCode": 400,
+      "description": "The amount provided is not within the min/max range"
+    },
+    {
+      "code": "UNSUPPORTED_CURRENCY",
+      "httpStatusCode": 400,
+      "description": "The currency provided is not supported"
+    },
+    {
+      "code": "SENDER_NOT_ACCEPTED",
+      "httpStatusCode": 400,
+      "description": "Payments from this sender are not accepted"
+    },
+    {
+      "code": "MISSING_MANDATORY_PAYER_DATA",
+      "httpStatusCode": 400,
+      "description": "Payer data is missing fields that are required by the receiver"
+    },
+    {
+      "code": "UNRECOGNIZED_MANDATORY_PAYEE_DATA_KEY",
+      "httpStatusCode": 501,
+      "description": "Receiver does not recognize the mandatory payee data key"
+    },
+    {
+      "code": "PARSE_UTXO_CALLBACK_ERROR",
+      "httpStatusCode": 500,
+      "description": "Error parsing the utxo callback"
+    },
+    {
+      "code": "SENDING_DOMAIN_NOT_ALLOWED",
+      "httpStatusCode": 403,
+      "description": "The receiving party does not accept payments from this sending domain"
+    }
+  ]
+}
