@@ -1,0 +1,33 @@
+name: "Validate Schema"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'schemas/**'
+  pull_request:
+    paths:
+      - 'schemas/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate schemas
+        uses: docker://orrosenblatt/validate-json-action:latest
+        env:
+          INPUT_SCHEMA: schemas/errors/errors.schema.json
+          INPUT_JSONS: schemas/errors/errors.json
+
+      - name: Verify uniqueness across schema files
+        run: |
+          echo "Checking for duplicate error codes..."
+          DUPLICATES=$(jq '.errors[].code' schemas/errors/errors.json | sort | uniq -d)
+          if [ ! -z "$DUPLICATES" ]; then
+            echo "Error: Found duplicate error codes:"
+            echo "$DUPLICATES"
+            exit 1
+          fi
