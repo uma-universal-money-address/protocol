@@ -26,7 +26,7 @@ def generate_error_codes():
         with open(output_file, "w") as f:
             f.write(code)
 
-    print(f"Generated error codes at: {output_file}")
+        print(f"Generated error codes at: {output_file}")
 
 
 def main():
