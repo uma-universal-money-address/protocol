@@ -19,10 +19,10 @@ class PythonErrorGenerator(ErrorGenerator):
         ]
 
         for error in errorList.errors:
-            code.append(f"    # {error.description}")
             code.append(
                 f'    {error.code} = ErrorDetails(code="{error.code}", http_status_code={error.httpStatusCode})'
             )
+            code.append(f'    """{error.description}"""')
             code.append("")
 
         return "\n".join(code)
