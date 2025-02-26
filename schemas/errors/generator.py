@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from base import ErrorList
+from js_writer import JsErrorGenerator
 from python_writer import PythonErrorGenerator
 
 SCRIPT_DIR = Path(__file__).parent
@@ -17,7 +18,7 @@ def load_errors() -> ErrorList:
 def generate_error_codes():
     """Generate error codes from input JSON to output directory"""
     errors = load_errors()
-    generators = [PythonErrorGenerator()]
+    generators = [PythonErrorGenerator(), JsErrorGenerator()]
 
     for generator in generators:
         output_path = Path(generator.get_output_directory())
