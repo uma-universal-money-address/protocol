@@ -91,9 +91,9 @@
       "description": "The amount provided is not within the min/max range"
     },
     {
-      "code": "UNSUPPORTED_CURRENCY",
+      "code": "INVALID_CURRENCY",
       "httpStatusCode": 400,
-      "description": "The currency provided is not supported"
+      "description": "The currency provided is not valid or supported"
     },
     {
       "code": "SENDER_NOT_ACCEPTED",
@@ -112,13 +112,78 @@
     },
     {
       "code": "PARSE_UTXO_CALLBACK_ERROR",
-      "httpStatusCode": 500,
+      "httpStatusCode": 400,
       "description": "Error parsing the utxo callback"
     },
     {
-      "code": "SENDING_DOMAIN_NOT_ALLOWED",
+      "code": "COUNTERPARTY_NOT_ALLOWED",
       "httpStatusCode": 403,
-      "description": "The receiving party does not accept payments from this sending domain"
+      "description": "This party does not accept payments with the counterparty"
+    },
+    {
+      "code": "PARSE_LNURLP_RESPONSE_ERROR", 
+      "httpStatusCode": 400,
+      "description": "Error parsing the LNURLP response"
+    },
+    {
+      "code": "PARSE_PAYREQ_RESPONSE_ERROR",
+      "httpStatusCode": 400, 
+      "description": "Error parsing the payreq response"
+    },
+    {
+      "code": "LNURLP_REQUEST_FAILED",
+      "httpStatusCode": 424,
+      "description": "The LNURLP request failed"
+    },
+    {
+      "code": "PAYREQ_REQUEST_FAILED",
+      "httpStatusCode": 424,
+      "description": "The payreq request failed"
+    },
+    {
+      "code": "NO_COMPATIBLE_UMA_VERSION",
+      "httpStatusCode": 424,
+      "description": "No compatible UMA protocol version found between sender and receiver"
+    },
+    {
+      "code": "INVALID_INVOICE",
+      "httpStatusCode": 400,
+      "description": "The provided invoice is invalid"
+    },
+    {
+      "code": "INVOICE_EXPIRED",
+      "httpStatusCode": 400,
+      "description": "The invoice has expired"
+    },
+    {
+      "code": "QUOTE_EXPIRED",
+      "httpStatusCode": 400,
+      "description": "The quote has expired"
+    },
+    {
+      "code": "INVALID_INPUT",
+      "httpStatusCode": 400,
+      "description": "The provided input is invalid"
+    },
+    {
+      "code": "INVALID_REQUEST_FORMAT",
+      "httpStatusCode": 400,
+      "description": "The request format is invalid"
+    },
+    {
+      "code": "FORBIDDEN",
+      "httpStatusCode": 403,
+      "description": "This action is not permitted for this user"
+    },
+    {
+      "code": "NOT_IMPLEMENTED",
+      "httpStatusCode": 501,
+      "description": "This functionality is not implemented"
+    },
+    {
+      "code": "QUOTE_NOT_FOUND",
+      "httpStatusCode": 404,
+      "description": "The requested quote was not found"
     }
   ]
 }
