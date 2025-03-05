@@ -3,6 +3,7 @@ from pathlib import Path
 
 from base import ErrorList
 from js_writer import JsErrorGenerator
+from kotlin_writer import KotlinErrorGenerator
 from python_writer import PythonErrorGenerator
 
 SCRIPT_DIR = Path(__file__).parent
@@ -18,7 +19,7 @@ def load_errors() -> ErrorList:
 def generate_error_codes():
     """Generate error codes from input JSON to output directory"""
     errors = load_errors()
-    generators = [PythonErrorGenerator(), JsErrorGenerator()]
+    generators = [PythonErrorGenerator(), JsErrorGenerator(), KotlinErrorGenerator()]
 
     for generator in generators:
         output_path = Path(generator.get_output_directory())

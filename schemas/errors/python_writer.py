@@ -7,6 +7,8 @@ from base import ErrorGenerator, ErrorList
 class PythonErrorGenerator(ErrorGenerator):
     def generate(self, errorList: ErrorList) -> str:
         code = [
+            "# Generated error codes - DO NOT MODIFY MANUALLY",
+            "",
             "from enum import Enum",
             "from dataclasses import dataclass",
             "",
