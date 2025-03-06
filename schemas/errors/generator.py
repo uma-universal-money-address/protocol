@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from base import ErrorList
+from go_writer import GoErrorGenerator
 from js_writer import JsErrorGenerator
 from kotlin_writer import KotlinErrorGenerator
 from python_writer import PythonErrorGenerator
@@ -19,7 +20,12 @@ def load_errors() -> ErrorList:
 def generate_error_codes():
     """Generate error codes from input JSON to output directory"""
     errors = load_errors()
-    generators = [PythonErrorGenerator(), JsErrorGenerator(), KotlinErrorGenerator()]
+    generators = [
+        PythonErrorGenerator(),
+        JsErrorGenerator(),
+        KotlinErrorGenerator(),
+        GoErrorGenerator(),
+    ]
 
     for generator in generators:
         output_path = Path(generator.get_output_directory())
