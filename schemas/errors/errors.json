@@ -106,6 +106,11 @@
       "description": "Payer data is missing fields that are required by the receiver"
     },
     {
+      "code": "MISSING_MANDATORY_PAYEE_DATA",
+      "httpStatusCode": 400,
+      "description": "Payee data is missing fields that are required by the sender"
+    },
+    {
       "code": "UNRECOGNIZED_MANDATORY_PAYEE_DATA_KEY",
       "httpStatusCode": 501,
       "description": "Receiver does not recognize the mandatory payee data key"
@@ -184,6 +189,11 @@
       "code": "QUOTE_NOT_FOUND",
       "httpStatusCode": 404,
       "description": "The requested quote was not found"
+    },
+    {
+      "code": "UMA_CONFIGURATION_FETCH_ERROR",
+      "httpStatusCode": 424,
+      "description": "Error fetching counterparty UMA configuration"
     }
   ]
 }
