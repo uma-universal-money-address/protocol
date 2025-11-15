@@ -98,17 +98,8 @@ any payee identity information for privacy reasons, which may cause the payment 
 For that reason, the sender SHOULD NOT require any payee identity information to be sent by the receiver unless it is
 absolutely necessary.
 
-### Common Payee Data Fields
-
-The following is a non-exhaustive list of common payee data fields that *may* be requested by the sender:
-
-- `name`: The full name of the receiving user.
-- `identifier`: The canonical receiving UMA address of the receiver.
-- `countryCode`: The ISO 3166-1 alpha-2 country code of the receiving user.
-- `email`: The email address of the receiving user.
-- `accountNumber`: The account number of the receiving user at the receiving VASP.
-
-Note that this struct is extensible, so any field can be added as long as it is agreed upon by both VASPs.
+See [UMAD-04](/umad-04-lnurlp-response.md#common-counterparty-data-fields) for common payee data fields that may be
+used here as well.
 
 ## Payer Data
 
