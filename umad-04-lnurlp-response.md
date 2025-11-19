@@ -128,7 +128,7 @@ the receiving user can receive between 1 USDCent and 10,000 USDC. If a sender wa
 specify `amount: 5950000, currency: USDC` in their [payreq request](/umad-05-payreq-request.md), which should in turn create
 a Lightning invoice for 14,677,700 millisats (5,950,000 * 2.466) plus applicable conversion fees.
 
-## Note for very small currency units
+### Note for very small currency units
 
 If the smallest unit of a currency is very small (eg. `multiplier` is .0001), it may be necessary to round up to a larger
 unit when actually sending the payment so that the `amount` field in the [payreq request](/umad-05-payreq-request.md)
@@ -139,3 +139,28 @@ increased to reduce the number of decimals. For example, if a currency has 10 de
 `100 * the number of millisats per the real smallest unit`, and you should set `decimals` to 8. Tweaking the `multiplier`
 and `decimals` fields in this way should allow the smallest unit to be represented in millisats and fit in an int64,
 although it may result in some loss of precision.
+
+## Common Counterparty Data Fields
+
+The following is a non-exhaustive list of common payee data fields that *may* be requested by the counterparty and used for
+both payerdata in the lnurlp response as well as payeedata in the payreq request:
+
+<!-- markdownlint-disable MD034 -->
+<!-- markdownlint-disable MD033 -->
+| Counterparty Data Key | Expected Format | Example |
+|----------------------|-----------------|---------|
+| `name` | String | Jane Doe |
+| `identifier` | String, UMA address format | $alice@vasp.com |
+| `birthDate` | String, ISO-8601 YYYY-MM-DD | 1990-01-01 |
+| `countryOfResidence` | String, ISO 3166-1 alpha-2 code | US |
+| `nationality` | String, ISO 3166-1 alpha-2 code | US |
+| `email` | String | alice@mail.com |
+| `phoneNumber` | String, E.164 international format | +12025550123 |
+| `postalAddress` | JSON object | <pre>`{`<br/>`"line1": "123 Main St",`<br/>`"line2": "Apt 4B",`<br/>`"city": "Los Angeles",`<br/>`"state": "CA",`<br/>`"country": "US",`<br/>`"postalCode": "12345"`<br/>`}`</pre> |
+| `accountIdentifier` | String, a stable identifier that remains constant for a user | 1234567890 |
+| `accountName` | String | Jane Doe Savings |
+| `financialInstitutionLei` | String, ISO 17442 | 254900WIJGOWPFXYV734 |
+<!-- markdownlint-enable MD033 -->
+<!-- markdownlint-enable MD034 -->
+
+Note that this struct is extensible, so any field can be added as long as it is agreed upon by both VASPs.
