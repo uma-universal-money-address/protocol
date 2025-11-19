@@ -156,7 +156,7 @@ both payerdata in the lnurlp response as well as payeedata in the payreq request
 | `nationality` | String, ISO 3166-1 alpha-2 code | US |
 | `email` | String | alice@mail.com |
 | `phoneNumber` | String, E.164 international format | +12025550123 |
-| `postalAddress` | JSON object | <pre>`{`<br/>`"line1": "123 Main St",`<br/>`"line2": "Apt 4B",`<br/>`"townName": "Los Angeles",`<br/>`"countrySubDivision": "CA",`<br/>`"country": "US",`<br/>`"postCode": "12345"`<br/>`}`</pre> |
+| `postalAddress` | JSON object | <pre>`{`<br/>`"line1": "123 Main St",`<br/>`"line2": "Apt 4B",`<br/>`"city": "Los Angeles",`<br/>`"state": "CA",`<br/>`"country": "US",`<br/>`"postalCode": "12345"`<br/>`}`</pre> |
 | `accountIdentifier` | String, a stable identifier that remains constant for a user | 1234567890 |
 | `accountName` | String | Jane Doe Savings |
 | `financialInstitutionLei` | String, ISO 17442 | 254900WIJGOWPFXYV734 |
