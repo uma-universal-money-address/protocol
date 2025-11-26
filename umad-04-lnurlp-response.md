@@ -223,7 +223,7 @@ Each entry in `settlementOptions` contains:
         {
           "identifier": "btkn1..",
           "multipliers": {
-            "USD": 1000,
+            "USD": 1000, // many stables have 6-decimal precision.
           }
         }
       ]
