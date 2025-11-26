@@ -24,7 +24,8 @@ The body of the request is a JSON object with the following fields:
   },
   // An amount (int64) followed optionally by a "." and the sending currency code. For example: "100.USD" would send
   // an amount equivalent to $1 USD. Note that the amount is specified in the smallest unit of the specified
-  // currency (eg. cents for USD). Omitting the currency code will default to specifying the amount in millisats.
+  // currency (eg. cents for USD). Omitting the currency code will default to specifying the amount in millisats
+  // (or the smallest unit of the settlement asset if a settlement option is specified).
   "amount": string,
   // The currency code of the receiving currency (eg. "USD") to which the receiving VASP will convert into when the
   // transaction completes. This must be one of the currencies returned in the LNURLP response, and it must have
@@ -38,6 +39,12 @@ The body of the request is a JSON object with the following fields:
     "identifier": { "mandatory": boolean },
     "countryCode": { "mandatory": boolean },
     ... All fields optional and more fields may be negotiated. See [LUD-22](https://github.com/lnurl/luds/pull/252)
+  },
+  // Settlement information specifying which settlement layer and asset to use for this payment.
+  // If not specified, the payment will settle via Lightning.
+  "settlement": {
+    "layer": string, // eg. "ln", "spark"
+    "assetIdentifier": string, // eg. "BTC" for lightning, or token identifier for Spark
   },
 }
 ```

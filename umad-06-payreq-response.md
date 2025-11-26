@@ -1,12 +1,13 @@
 # UMAD-06: Payreq Response
 
 The response to the payreq request is an extension of LNURL's [LUD-06](https://github.com/lnurl/luds/blob/luds/06.md).
-It contains the actual lightning invoice, as well as some additional fields for compliance and currency conversion.
-The full structure of the LNURLP response is:
+It contains the actual payment request (lightning invoice or settlement layer-specific payment reference), as well as
+some additional fields for compliance and currency conversion. The full structure of the payreq response is:
 
 ```raw
 {
-  // The encoded BOLT-11 invoice
+  // The encoded payment request for the chosen settlement layer. For Lightning, this is a BOLT-11 invoice.
+  // For Spark, this is a Spark invoice.
   "pr": string,
   // Empty for legcy LNURL reasons.
   "routes": [],
@@ -17,16 +18,20 @@ The full structure of the LNURLP response is:
     // The currency code of the receiving currency (eg. "USD"). This should match the requested currency in the payreq
     // request.
     "currencyCode": string,
-    // Millisats per "unit" of the receiving currency (eg. 1 cent in USD). A double-precision floating point number.
-    // In this context, this is just for convenience. The conversion rate is also baked into the invoice amount itself.
-    // `invoice amount = amount * multiplier + fee`
+    // The conversion rate. For Lightning, this is the number of millisats that the receiver will get per smallest unit of
+    // receiving currency (eg. 1 cent in USD). For other settlement layers, this is the number of the smallest unit of that
+    // settlement asset per smallest unit of the receiving currency.
+    // A double-precision floating point number.
+    // In this context, this is just for convenience. The conversion rate is also baked into the payment request amount itself.
+    // `payment request amount = amount * multiplier + fee`
     "multiplier": number,
     // Number of digits after the decimal point for the receiving currency. For example, in USD, by convention, there are
     // 2 digits for cents - $5.95. In this case, `decimals` would be 2. This should align with the currency's `decimals`
     // field in the LNURLP response. It is included here for convenience. See [UMAD-04](/uma-04-local-currency.md) for
     // details, edge cases, and examples.
     "decimals": number,
-    // The fees charged (in millisats) by the receiving VASP to convert to the target currency.
+    // The fees charged by the receiving VASP to convert to the target currency. For Lightning, this is in millisats.
+    // For other settlement layers, this is in the smallest unit of that asset.
     // This is separate from the multiplier rate.
     "fee": number
   },

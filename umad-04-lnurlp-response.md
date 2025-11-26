@@ -56,6 +56,22 @@ The full structure of the LNURLP response is:
     "signatureTimestamp": number, // secs since epoch
     "receiverIdentifier": string, // The identity of the receiver at VASP2
   },
+  // Settlement layers and assets supported by the receiver. If not specified, the payment will be
+  // settled on Lightning using BTC as the settlement asset.
+  "settlementOptions": [
+    {
+      "settlementLayer": string, // eg. "ln", "spark"
+      "assets": [
+        {
+          "identifier": string, // eg. "BTC" for lightning, token identifier for Spark
+          "multipliers": {
+            // Map of currency code to estimated millisats (or smallest unit of asset) per unit of that currency
+            "USD": number,
+          }
+        }
+      ]
+    }
+  ],
   "umaVersion": "1.0", // The UMA protocol version that will be used for this transaction.
   "tag": "payRequest",
 }
@@ -164,3 +180,54 @@ both payerdata in the lnurlp response as well as payeedata in the payreq request
 <!-- markdownlint-enable MD034 -->
 
 Note that this struct is extensible, so any field can be added as long as it is agreed upon by both VASPs.
+
+## Settlement Options
+
+The `settlementOptions` field allows receiving VASPs to specify alternate settlement layers besides Lightning. This is
+useful in cases where settling with other assets may be more attractive, such as USD -> USD payments using a US Dollar
+denominated stablecoin. If `settlementOptions` is not specified, the payment will settle via Lightning using BTC as the
+settlement asset.
+
+### Structure
+
+Each entry in `settlementOptions` contains:
+
+- `settlementLayer`: A string identifier for the settlement network (e.g., "ln" for Lightning Network, "spark" for Spark)
+- `assets`: Supported assets on that settlement layer, where each asset includes:
+  - `identifier`: The unique identifier for the asset. For Lightning, this is "BTC". For Spark, this is the bech32m
+    encoded token identifier.
+  - `multipliers`: Currency codes to estimated conversion rates. The value represents the smallest unit of the
+    settlement asset (e.g., millisats for Lightning, smallest token unit for Spark) per smallest unit of the target currency
+    (e.g., cents for USD).
+
+### Example
+
+```json
+{
+  "settlementOptions": [
+    {
+      "settlementLayer": "ln",
+      "assets": [
+        {
+          "identifier": "BTC",
+          "multipliers": {
+            "USD": 23400,
+            "PHP": 850000
+          }
+        }
+      ]
+    },
+    {
+      "settlementLayer": "spark",
+      "assets": [
+        {
+          "identifier": "btkn1..",
+          "multipliers": {
+            "USD": 1000, // many stables have 6-decimal precision.
+          }
+        }
+      ]
+    }
+  ]
+}
+```
