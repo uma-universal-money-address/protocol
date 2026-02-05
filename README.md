@@ -1,6 +1,7 @@
-# UMA Protocol Spec
+# Universal Money Address (UMA) Protocol Spec
 
-This is the source of truth protocol definition for UMA. All proposed spec changes should be sent as PRs to this repo.
+This is the source of truth definition for Universal Money Address (UMA) Protocol.
+All proposed spec changes should be sent as PRs to this repo.
 Note that UMA is an extension of LNURL. If your proposal is also applicable to LNURL, the preference should be to
 [propose a new LUD](https://github.com/lnurl/luds).
 
@@ -31,7 +32,7 @@ not part of the core UMA payment protocol, but are defined here for reference.
 ## Additional Resources
 
 - [Full Documentation and Guides](https://docs.uma.me)
-- **UMA SDKs:**
+- **Universal Money Address (UMA) SDKs:**
   - [Golang](https://github.com/uma-universal-money-address/uma-go-sdk)
   - [Python](https://github.com/uma-universal-money-address/uma-python-sdk)
   - [Rust](https://github.com/uma-universal-money-address/uma-rust-sdk)
